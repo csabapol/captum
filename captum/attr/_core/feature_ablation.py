@@ -284,9 +284,10 @@ class FeatureAblation(PerturbationAttribution):
                 if isinstance(initial_eval, Tensor)
                 else type(initial_eval),
             )
+            attrib_device = initial_eval.device
 
             total_attrib = [
-                torch.zeros((num_outputs,) + input.shape[1:], dtype=attrib_type)
+                torch.zeros((num_outputs,) + input.shape[1:], dtype=attrib_type, device=attrib_device)
                 for input in inputs
             ]
 
